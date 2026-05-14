@@ -8,5 +8,4 @@ data/
 next-env.d.ts
 dist
 build
-.nixpacks
 .cache
