@@ -129,8 +129,11 @@ async function handleIncomingMessage(msg: any, pushName: string | null) {
 
             if (res.ok) {
               const data = await res.json();
+              console.log(`[webhook] API OK (Status ${res.status}). Datos recibidos:`, JSON.stringify(data).substring(0, 300) + '...');
               toolResult = JSON.stringify(data);
             } else {
+              const errorText = await res.text();
+              console.error(`[webhook] API ERROR (Status ${res.status}):`, errorText);
               toolResult = JSON.stringify({ error: "No se pudieron encontrar productos" });
             }
 
