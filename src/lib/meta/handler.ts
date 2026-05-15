@@ -83,10 +83,10 @@ async function handleIncomingMessage(msg: any, pushName: string | null) {
               },
               idSucursal: {
                 type: "number",
-                description: "Opcional. ID de la sucursal para filtrar inventario.",
+                description: "ID numérico de la sucursal. 1=Vicka, 2=El Amigo, 3=Mi Mercadito. (Obligatorio)",
               }
             },
-            required: ["textoBusqueda"],
+            required: ["textoBusqueda", "idSucursal"],
           },
         },
       }
@@ -113,7 +113,7 @@ async function handleIncomingMessage(msg: any, pushName: string | null) {
           try {
             // Reemplaza esta URL con la ruta real de tu backend si es distinta
             const apiUrl = 'https://elamigos-elamigosapi.xj7zln.easypanel.host';
-            const queryParams = new URLSearchParams({ textoBusqueda: args.textoBusqueda });
+            const queryParams = new URLSearchParams({ texto: args.textoBusqueda });
             if (args.idSucursal) queryParams.append('idSucursal', args.idSucursal.toString());
 
             // Endpoint hipotético basado en el repositorio que me mostraste
