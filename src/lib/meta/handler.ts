@@ -118,7 +118,13 @@ async function handleIncomingMessage(msg: any, pushName: string | null) {
 
             // Endpoint hipotético basado en el repositorio que me mostraste
             // Deberás ajustar la ruta si no es /api/productos/llm
-            const res = await fetch(`${apiUrl}/api/productos/buscarLLM?${queryParams.toString()}`);
+            const res = await fetch(`${apiUrl}/api/productos/buscarLLM?${queryParams.toString()}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNzc4ODYyNDM1fQ.F5LCAIsHw2PKlJVnaXNlAX5mDhUicLvACopOvqkxbnE`
+              }
+            });
             let toolResult = "";
 
             if (res.ok) {
